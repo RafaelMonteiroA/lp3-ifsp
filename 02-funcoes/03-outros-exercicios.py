@@ -62,14 +62,13 @@ elif Luk > Latorre and Motta:
     print(f"Lukkkkkkkk presidenteeee!!!\nLatorre: {Latorre} votos\nLuk: {Luk} votos\nMotta: {Motta} votos\nNulo: {Nulo}")
 elif Motta > Luk and Latorre:
     print(f"Motttaaaaa presidenteeee!!!\nLatorre: {Latorre} votos\nLuk: {Luk} votos\nMotta: {Motta} votos\nNulo: {Nulo}")
-elif Latorre == Luk or Latorre == Motta or Luk == Motta:
-    print(f"Eita, melhor refazer a votação!\nLatorre: {Latorre} votos\nLuk: {Luk} votos\nMotta: {Motta} votos\nNulo: {Nulo}")
+else:
+    print(f"Melhor refazer a votação!\nLatorre: {Latorre} votos\nLuk: {Luk} votos\nMotta: {Motta} votos\nNulo: {Nulo}")
 
 # Verificador de Palíndromos: Solicite ao usuário que digite uma palavra ou frase e verifique se é um palíndromo (ou seja, pode ser lida de frente para trás e de trás para frente da mesma forma).
 
 frase = input("Digite uma frase sem pontuações: ")
-frase = frase.replace(" ", "")
-frase = frase.lower()
+frase = frase.replace(" ", "") and frase.lower()
 palindromo = frase[::-1]
 
 if frase == palindromo:
@@ -94,3 +93,48 @@ else:
 
 # Jogo da Forca: Implemente uma versão simples do jogo da forca. O programa começa com uma palavra oculta (o usuário não vê) e o usuário tenta adivinhar a palavra, letra por letra. O usuário tem um número limitado de tentativas para adivinhar toda a palavra.
 
+palavra = "Abacate"
+letras_inseridas = []
+chances = 7
+ganhou = False
+
+while True:
+    for letra in palavra:
+        if letra.lower() in letras_inseridas:
+            print(letra, end=" ")
+        else:
+            print("_", end=" ")
+    print(f"Você tem {chances} chances")
+
+    tentativa = input("Escolha uma letra para adivinhar: ")
+    letras_inseridas.append(tentativa.lower())
+
+    if tentativa.lower() not in palavra.lower():
+        chances -= 1
+
+    ganhou = True
+
+    for letra in palavra:
+        if letra.lower() not in letras_inseridas:
+            ganhou = False
+    if chances == 0 or ganhou:
+        break
+
+if ganhou:
+    print(f"Manja muito de forca!! você ganhou, a palavra é: {palavra}")
+else:
+    print(f"Errrrouuuuuuuu!!! a palavra era: {palavra}")
+
+# Função de Contagem de Palavras: Escreva uma função que receba uma string (frase) como argumento e retorne um dicionário onde as chaves são as palavras únicas no texto e os valores são o número de vezes que cada palavra aparece no texto. Depois, teste a função com diferentes textos fornecidos pelo usuário.
+
+def contar_palavras(texto):
+    contagem_palavras = {}
+    
+    for palavra in texto:
+        contagem_palavras[palavra] = texto.count(palavra)
+
+    return contagem_palavras
+
+texto = input("Digite uma frase: ")
+print(contar_palavras(texto))
+ 
